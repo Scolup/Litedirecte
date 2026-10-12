@@ -1,0 +1,64 @@
+name: "\U0001F41B Bug report"
+description: "Something isn't working? Let us know so we can fix it."
+title: "[\U0001F41B] "
+labels: ['bug']
+assignees:
+  - Adouchee
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <picture><source media="(prefers-color-scheme: light)" srcset="https://shieldcn.dev/header/glow.svg?title=Bug+report&amp;subtitle=Thanks+for+helping+keeping+Litedirecte+stable%21&amp;logo=lu%3ABug&amp;mode=light&amp;theme=blue&amp;align=left" /><img alt="Bug report | Thanks for helping keeping Litedirecte stable!" src="https://shieldcn.dev/header/glow.svg?title=Bug+report&amp;subtitle=Thanks+for+helping+keeping+Litedirecte+stable%21&amp;logo=lu%3ABug&amp;mode=dark&amp;theme=blue&amp;align=left" /></picture>
+        </p>
+
+        Every report helps us keep Litedirecte reliable. No detail is too small ; even if you're not sure it's a bug, go ahead and file it.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+      placeholder: e.g. "The getGrades() function returns an empty array when called."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+      placeholder: 'e.g. It should return an array of grades.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        Which runtime and version are you using? Check with `node --version`, `bun --version`, or `deno --version`, or browser info.
+      placeholder: |
+        Bun 1.1.0 or Chromium 152.0.7943.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else that might help? Logs, code snippets...
+      placeholder: 'e.g. Screenshot of the error, console output, related issues...'
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I am using a recent version of Litedirecte
+          required: true
+        - label: I checked that this bug hasn't already been reported
+          required: true

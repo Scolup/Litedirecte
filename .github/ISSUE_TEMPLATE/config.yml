@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/Scolup/Litedirecte/wiki
+    about: Check the docs before opening an issue, your question might already be answered.
+  - name: 🐛 Quick bug report (no template)
+    url: https://github.com/Scolup/Litedirecte/issues/new
+    about: If the templates don't fit, open a blank issue.

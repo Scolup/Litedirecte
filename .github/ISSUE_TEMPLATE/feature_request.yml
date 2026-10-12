@@ -1,0 +1,61 @@
+name: "\u2795 Feature request/idea"
+description: "Have an idea to make Litedirecte better? We'd love to hear it."
+title: "[\u2795] "
+labels: ['enhancement', 'feature request']
+assignees:
+  - Adouchee
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <picture><source media="(prefers-color-scheme: light)" srcset="https://shieldcn.dev/header/glow.svg?title=Feature+request&amp;subtitle=Thanks+for+helping+enriching+Litedirecte%21&amp;logo=lu%3AGitPullRequestDraft&amp;mode=light&amp;theme=blue&amp;align=left" /><img alt="Feature request | Thanks for helping enriching Litedirecte!" src="https://shieldcn.dev/header/glow.svg?title=Feature+request&amp;subtitle=Thanks+for+helping+enriching+Litedirecte%21&amp;logo=lu%3AGitPullRequestDraft&amp;mode=dark&amp;theme=blue&amp;align=left" /></picture>
+        </p>
+
+        All ideas are welcome. Big or small, rough or refined. If it would make Litedirecte better for you, it's worth sharing.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like to see?
+      description: Describe the feature or improvement you have in mind.
+      placeholder: 'e.g. Automatic caculation of current average if not sent by EcoleDirecte.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Why is this useful?
+      description: What problem does it solve? What's your workflow like without it?
+      placeholder: "e.g. I'm building a Discord bot that gives you your average, and I'd like to not have to manually calculate it."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Code snippets, examples from other tools, related issues...Anything that helps us understand your vision.
+      placeholder: 'e.g. Similar to how Blocksnote populates the averages alone.'
+    validations:
+      required: false
+
+  - type: dropdown
+    id: attribution
+    attributes:
+      label: Attribution
+      options:
+        - I would like to build this feature myself
+        - I'll let someone else build this feature
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked that this hasn't already been requested or implemented
+          required: true

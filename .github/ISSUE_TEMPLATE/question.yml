@@ -1,0 +1,42 @@
+name: "\u2753 Question"
+description: "Have a question about Litedirecte? We'll answer it."
+title: "[\u2753] "
+labels: ['question']
+assignees:
+  - Adouchee
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <picture><source media="(prefers-color-scheme: light)" srcset="https://shieldcn.dev/header/glow.svg?title=Question&amp;subtitle=Thanks+for+your+interest+in+Litedirecte%21&amp;logo=lu%3ALightbulb&amp;mode=light&amp;theme=blue&amp;align=left" /><img alt="Question | Thanks for your interest in Litedirecte!" src="https://shieldcn.dev/header/glow.svg?title=Question&amp;subtitle=Thanks+for+your+interest+in+Litedirecte%21&amp;logo=lu%3ALightbulb&amp;mode=dark&amp;theme=blue&amp;align=left" /></picture>
+        </p>
+
+        Any questions are welcome. Let's pretend "dumb" questions don't exist.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What would you like to know?
+      description: Describe your question.
+      placeholder: 'e.g. When will you add support for teacher accounts?'
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Code snippets, examples from other tools, related issues, links... Anything that helps us understand your question.
+      placeholder: 'e.g. Docsdirecte (docsdirecte.scolup.qzz.io) documents it well.'
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked that this question hasn't already been asked
+          required: true
