@@ -38,6 +38,8 @@ Every `EdError` carries a `code`. Some are raised by the SDK itself, others pass
 | `NO_ACCOUNT` | `EdAuthError` | `login` answered `200` without usable accounts, or no account was available for a token refresh. |
 | `SESSION_ENDED` | `EdAuthError` | The session changed — logout, account switch, another login, `destroy` — while the request was in flight. Late responses are abandoned and never cached. |
 | `2FA_REQUIRED` | `EdAuthError` | An API code `250` arrived on a normal request. Only the login/2FA flows treat `250` as success. |
+| `FIRST_LOGIN` | `EdAuthError` | API code `202` on login: the user must customize their password/identifiers (first login). |
+| `CHARTE_REQUIRED` | `EdAuthError` | API code `240` on login: the user must accept the charte d'utilisation. |
 | `REFRESH_FAILED` | `EdAuthError` | The background token refresh could not produce a usable token. The next foreground request retries interactively. |
 | `OFFLINE` | `EdOfflineError` | A read needed the network while offline: nothing cached for that key, or any `{ force: true }` read. Never retried, no backoff. A read served from cache does **not** throw — it reports this same error via `ld.sync.getState().lastError`. Mutations still enter the offline queue. |
 | `UNSUPPORTED_ENVIRONMENT` | `EdValidationError` | A storage adapter was requested on a runtime that cannot provide it (e.g. `localStorage` in a worker with no DOM). |
@@ -140,6 +142,8 @@ EcoleDirecte API relies on numeric response codes. The SDK automatically maps th
 
 | Raw Code | Status | Friendly Description mapped by SDK |
 | :--- | :--- | :--- |
+| `202` | First Login | First login required: password/identifiers not yet customized |
+| `240` | Charte Required | Charte d'utilisation must be accepted |
 | `250` | Double Auth Required | Two-factor authentication required |
 | `505` | Invalid Credentials | Invalid username or password |
 | `520` | Token Invalid | Session expired: Invalid session token |

@@ -250,6 +250,19 @@ export async function login(
     return handleTwoFactor(ctx, username, password, uuid, options, gtk, twofaToken, xToken);
   }
 
+  if (initRes.code === 202) {
+    const rawMsg =
+      initRes.message || 'First login required: password/identifiers not yet customized';
+    const friendlyMsg = getFriendlyErrorMessage('202', rawMsg);
+    throw new EdAuthError(friendlyMsg, 'FIRST_LOGIN', undefined, initRes);
+  }
+
+  if (initRes.code === 240) {
+    const rawMsg = initRes.message || "Charte d'utilisation must be accepted";
+    const friendlyMsg = getFriendlyErrorMessage('240', rawMsg);
+    throw new EdAuthError(friendlyMsg, 'CHARTE_REQUIRED', undefined, initRes);
+  }
+
   if (initRes.code !== 200) {
     const rawMsg = initRes.message || 'Login failed';
     const friendlyMsg = getFriendlyErrorMessage(String(initRes.code), rawMsg);
@@ -425,6 +438,19 @@ async function handleTwoFactor(
       t4,
       x4,
     );
+
+    if (finalRes.code === 202) {
+      const rawMsg =
+        finalRes.message || 'First login required: password/identifiers not yet customized';
+      const friendlyMsg = getFriendlyErrorMessage('202', rawMsg);
+      throw new EdAuthError(friendlyMsg, 'FIRST_LOGIN', undefined, finalRes);
+    }
+
+    if (finalRes.code === 240) {
+      const rawMsg = finalRes.message || "Charte d'utilisation must be accepted";
+      const friendlyMsg = getFriendlyErrorMessage('240', rawMsg);
+      throw new EdAuthError(friendlyMsg, 'CHARTE_REQUIRED', undefined, finalRes);
+    }
 
     if (finalRes.code !== 200) {
       const rawMsg = finalRes.message || 'Login failed';
