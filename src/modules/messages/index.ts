@@ -335,6 +335,95 @@ export class MessagesNamespace {
     }
     return result;
   };
+
+  getFolders = async (options: { mockMode?: boolean; force?: boolean } = {}): Promise<any> => {
+    return edFetch<any>(this.ctx, '/messagerie/classeurs.awp?verbe=get', {
+      ...postOptions({}, { mockMode: options.mockMode }),
+      mockMode: options.mockMode,
+    });
+  };
+
+  createFolder = async (name: string, options: { mockMode?: boolean } = {}): Promise<any> => {
+    return edFetch<any>(this.ctx, '/messagerie/classeurs.awp?verbe=post', {
+      ...postOptions({ libelle: name }, { mockMode: options.mockMode }),
+      mockMode: options.mockMode,
+    });
+  };
+
+  updateFolder = async (
+    id: number,
+    data: { libelle?: string },
+    options: { mockMode?: boolean } = {},
+  ): Promise<any> => {
+    return edFetch<any>(this.ctx, `/messagerie/classeur/${id}.awp?verbe=put`, {
+      ...postOptions({ id, ...data }, { mockMode: options.mockMode }),
+      mockMode: options.mockMode,
+    });
+  };
+
+  deleteFolder = async (id: number, options: { mockMode?: boolean } = {}): Promise<any> => {
+    return edFetch<any>(this.ctx, `/messagerie/classeur/${id}.awp?verbe=delete`, {
+      ...postOptions({}, { mockMode: options.mockMode }),
+      mockMode: options.mockMode,
+    });
+  };
+
+  archiveMessages = async (
+    ids: number | number[],
+    options: MarkMessageOptions = {},
+  ): Promise<{ success: boolean }> => {
+    const endpoint = `/eleves/${requireCurrentAccount(this.ctx).id}/messages.awp?verbe=put`;
+    const normalized = normalizeMessageIds(ids);
+    const result = await edFetch<{ success: boolean }>(
+      this.ctx,
+      endpoint,
+      postOptions(
+        { action: 'archiver', ids: normalized, anneeMessages: resolveYear(options.year) },
+        { mockMode: options.mockMode },
+      ),
+    );
+    return result;
+  };
+
+  unarchiveMessages = async (
+    ids: number | number[],
+    options: MarkMessageOptions = {},
+  ): Promise<{ success: boolean }> => {
+    const endpoint = `/eleves/${requireCurrentAccount(this.ctx).id}/messages.awp?verbe=put`;
+    const normalized = normalizeMessageIds(ids);
+    const result = await edFetch<{ success: boolean }>(
+      this.ctx,
+      endpoint,
+      postOptions(
+        { action: 'desarchiver', ids: normalized, anneeMessages: resolveYear(options.year) },
+        { mockMode: options.mockMode },
+      ),
+    );
+    return result;
+  };
+
+  moveToFolder = async (
+    ids: number | number[],
+    folderId: number,
+    options: MarkMessageOptions = {},
+  ): Promise<{ success: boolean }> => {
+    const endpoint = `/eleves/${requireCurrentAccount(this.ctx).id}/messages.awp?verbe=put`;
+    const normalized = normalizeMessageIds(ids);
+    const result = await edFetch<{ success: boolean }>(
+      this.ctx,
+      endpoint,
+      postOptions(
+        {
+          action: 'deplacer',
+          idClasseur: folderId,
+          ids: normalized.map((id) => `${id}:${-1}`),
+          anneeMessages: resolveYear(options.year),
+        },
+        { mockMode: options.mockMode },
+      ),
+    );
+    return result;
+  };
 }
 
 /** Build the `marquerCommeLu`/`marquerCommeNonLu` request. */
