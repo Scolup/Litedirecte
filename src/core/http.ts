@@ -11,7 +11,7 @@ import { isFormData } from './env';
 
 export const BASE_API_URL = 'https://api.ecoledirecte.com/v3';
 
-export const ED_VERSION = '7.14.3';
+export const ED_VERSION = '8.1.0';
 
 export const DEFAULT_TIMEOUT_MS = 15_000;
 export const DEFAULT_MAX_RETRIES = 3;

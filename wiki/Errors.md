@@ -125,7 +125,7 @@ try {
 ```json
 {
   "name": "EdTimeoutError",
-  "message": "[TIMEOUT_ERROR] Request to https://api.ecoledirecte.com/v3/notes.awp?v=7.14.3 timed out after 15000ms",
+  "message": "[TIMEOUT_ERROR] Request to https://api.ecoledirecte.com/v3/notes.awp?v=8.1.0 timed out after 15000ms",
   "code": "TIMEOUT_ERROR",
   "statusCode": 0,
   "stack": "EdTimeoutError: [TIMEOUT_ERROR] Request to... at sendRequest ..."
